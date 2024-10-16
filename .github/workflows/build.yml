@@ -24,27 +24,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      # Step 4: Mount a temporary ESLint config
-      - name: Create temporary ESLint config
-        run: |
-          echo '{
-            "env": {
-              "browser": true,
-              "es2021": true,
-              "node": true
-            },
-            "extends": "eslint:recommended",
-            "parserOptions": {
-              "ecmaVersion": 12,
-              "sourceType": "module"
-            },
-            "rules": {}
-          }' > .eslintrc.json
-
-      # Step 5: Run lint
+      # Step 4: Run lint (without the --ext option)
       - name: Run lint
-        run: yarn lint
+        run: yarn eslint .
 
-      # Step 6: Clean up the temporary ESLint config
-      - name: Clean up ESLint config
-        run: rm .eslintrc.json
