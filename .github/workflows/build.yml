@@ -37,8 +37,7 @@ jobs:
               semi: ['error', 'always'],
               quotes: ['error', 'single']
             }
-          };" > eslint.config.js
+          };" > eslint.config.cjs  # Change the file extension to .cjs
 
-      # Adjust the command here
       - name: Run lint
-        run: yarn eslint .  # Remove the `--ext` option
+        run: yarn eslint .
