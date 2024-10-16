@@ -24,7 +24,15 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      # Step 4: Run lint (without the --ext option)
+      # Step 4: Create a temporary ESLint configuration file
+      - name: Create temporary ESLint config
+        run: |
+          echo "export default [{ files: ['**/*.js'], languageOptions: { sourceType: 'module' }, rules: {} }];" > eslint.config.js
+
+      # Step 5: Run lint using the temporary ESLint config
       - name: Run lint
         run: yarn eslint .
 
+      # Step 6: Remove the temporary ESLint configuration
+      - name: Cleanup ESLint config
+        run: rm eslint.config.js
