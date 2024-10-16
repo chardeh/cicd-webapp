@@ -20,3 +20,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
+
+      # Step 3: Install dependencies using yarn
+      - name: Install dependencies
+        run: yarn install
+
+      # Step 4: Run lint
+      - name: Run lint
+        run: yarn lint
