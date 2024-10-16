@@ -1,4 +1,4 @@
-name: Build and Test
+name: Build and test
 
 on:
   push:
@@ -10,34 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Check out the repository code
       - name: Check out repository code
         uses: actions/checkout@v3
 
+      # Step 2: Set up Node.js version 20
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
+      # Step 3: Install dependencies using yarn
       - name: Install dependencies
         run: yarn install
 
-      - name: Create ESLint config dynamically as an ES module
-        run: |
-          echo "export default {
-            env: {
-              browser: true,
-              es2021: true,
-            },
-            parser: '@babel/eslint-parser',
-            parserOptions: {
-              ecmaVersion: 12,
-              sourceType: 'module',
-            },
-            rules: {
-              semi: ['error', 'always'],
-              quotes: ['error', 'single'],
-            },
-          };" > eslint.config.mjs  # Save as .mjs for ES module support
-
+      # Step 4: Run lint
       - name: Run lint
-        run: yarn eslint .
+        run: yarn lint
