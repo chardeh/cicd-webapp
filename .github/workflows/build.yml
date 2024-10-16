@@ -1,3 +1,4 @@
+---
 name: Build and Test
 
 on:
@@ -14,4 +15,8 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
 
-      # (Optional) You can add more steps here like building or testing the application
+      # Step 2: Set up Node.js version 20
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
