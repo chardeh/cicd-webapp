@@ -39,5 +39,6 @@ jobs:
             }
           };" > eslint.config.js
 
+      # Adjust the command here
       - name: Run lint
-        run: yarn lint
+        run: yarn eslint .  # Remove the `--ext` option
