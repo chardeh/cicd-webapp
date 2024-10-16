@@ -43,7 +43,7 @@ jobs:
                 quotes: ['error', 'single'],
               },
             },
-          ];" > eslint.config.mjs  # Use the .mjs extension for ES module
+          ];" > eslint.config.mjs
 
       - name: Run lint
         run: yarn eslint .
