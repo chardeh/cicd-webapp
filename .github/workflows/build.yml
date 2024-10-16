@@ -23,21 +23,27 @@ jobs:
 
       - name: Create ESLint config dynamically
         run: |
-          echo "module.exports = {
-            env: {
-              browser: true,
-              es2021: true
+          echo "import { flatConfig } from '@eslint/eslintrc';
+
+          export default [
+            {
+              languageOptions: {
+                globals: {
+                  browser: true,
+                  es2021: true,
+                },
+                parser: '@babel/eslint-parser',
+                parserOptions: {
+                  ecmaVersion: 12,
+                  sourceType: 'module',
+                },
+              },
+              rules: {
+                semi: ['error', 'always'],
+                quotes: ['error', 'single'],
+              },
             },
-            parser: '@babel/eslint-parser',
-            parserOptions: {
-              ecmaVersion: 12,
-              sourceType: 'module'
-            },
-            rules: {
-              semi: ['error', 'always'],
-              quotes: ['error', 'single']
-            }
-          };" > eslint.config.cjs  # Change the file extension to .cjs
+          ];" > eslint.config.mjs  # Use the .mjs extension for ES module
 
       - name: Run lint
         run: yarn eslint .
