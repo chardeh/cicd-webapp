@@ -1,3 +1,27 @@
+Skip to content
+Navigation Menu
+chardeh
+/
+cicd-webapp
+
+Type / to search
+Code
+Issues
+Pull requests
+7
+Actions
+Projects
+Wiki
+Security
+20
+Insights
+Settings
+Build and Test
+Merge pull request #10 from chardeh/dependabot/github_actions/actions… #41
+Jobs
+Run details
+Workflow file for this run
+.github/workflows/build.yml at ae4cd7c
 name: Build and Test
 
 on:
@@ -28,46 +52,30 @@ jobs:
       - name: Create temporary ESLint config
         run: |
           echo "export default [{ files: ['**/*.js'], languageOptions: { sourceType: 'module' }, rules: {} }];" > eslint.config.js
-
       # Step 5: Run lint using the temporary ESLint config
       - name: Run lint
-        run: yarn lint
+        run: yarn eslint .
 
       # Step 6: Remove the temporary ESLint configuration
       - name: Cleanup ESLint config
         run: rm eslint.config.js
 
-      # Step 7: Start the server in the background
-      - name: Start server
-        run: |
-          nohup yarn start &  # Start the server in the background
-
-      # Step 8: Wait for the server to start
-      - name: Wait for server
-        run: |
-          echo "Waiting for server to start..."
-          sleep 10  # Adjust this duration based on your server's startup time
-
-      # Step 9: Run tests using yarn
-      - name: Run tests
-        run: yarn test
-
-      # Step 10: Set up QEMU (for multi-platform builds)
+      # Step 7: Set up QEMU (for multi-platform builds)
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
-      # Step 11: Set up Docker Buildx
+      # Step 8: Set up Docker Buildx
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      # Step 12: Log in to Docker Hub
+      # Step 9: Log in to Docker Hub
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Step 13: Build the Docker image using Docker Buildx
+      # Step 10: Build the Docker image using Docker Buildx
       - name: Build Docker image
         uses: docker/build-push-action@v6
         with:
