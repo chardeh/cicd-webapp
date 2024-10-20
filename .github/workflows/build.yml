@@ -36,6 +36,10 @@ jobs:
       - name: Cleanup ESLint config
         run: rm eslint.config.js
 
+      # Step 11: Run tests using yarn
+      - name: Run tests
+        run: yarn test
+
       # Step 7: Set up QEMU (for multi-platform builds)
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -59,7 +63,3 @@ jobs:
           file: ./Dockerfile
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/webapp:latest
           push: true  # Set to true to push the image to Docker Hub
-
-      # Step 11: Run tests using yarn
-      - name: Run tests
-        run: yarn test
