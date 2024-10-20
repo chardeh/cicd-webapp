@@ -28,7 +28,7 @@ jobs:
       - name: Create temporary ESLint config
         run: |
           echo "export default [{ files: ['**/*.js'], languageOptions: { sourceType: 'module' }, rules: {} }];" > eslint.config.js
-
+      
       # Step 5: Run lint using the temporary ESLint config
       - name: Run lint
         run: yarn eslint .
@@ -37,19 +37,11 @@ jobs:
       - name: Cleanup ESLint config
         run: rm eslint.config.js
 
-      # Step 7: Set up Docker Buildx (for building the Docker image)
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      # Step 8: Build Docker image (no push)
+      # Step 7: Build Docker image (without pushing to Docker Hub)
       - name: Build Docker image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v4
         with:
           context: .
-          push: false  # Do not push the image to Docker Hub
+          file: ./Dockerfile
           tags: chardeh/webapp:latest
-
-      # Step 9: Save Docker image as a file (Optional for local use)
-      - name: Save Docker image as a tar file
-        run: |
-          docker save -o webapp-image.tar chardeh/webapp:latest
+          push: false  # Do not push the image yet
