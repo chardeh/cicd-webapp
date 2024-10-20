@@ -37,26 +37,32 @@ jobs:
       - name: Cleanup ESLint config
         run: rm eslint.config.js
 
-      # Step 7: Run tests using yarn
+      # Step 7: Start the server in the background
+      - name: Start server
+        run: |
+          nohup yarn start &   # Start the server in the background
+          sleep 5             # Wait for a few seconds to allow the server to start
+
+      # Step 8: Run tests using yarn
       - name: Run tests
         run: yarn test
 
-      # Step 8: Set up QEMU (for multi-platform builds)
+      # Step 9: Set up QEMU (for multi-platform builds)
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
-      # Step 9: Set up Docker Buildx
+      # Step 10: Set up Docker Buildx
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      # Step 10: Log in to Docker Hub
+      # Step 11: Log in to Docker Hub
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Step 11: Build the Docker image using Docker Buildx
+      # Step 12: Build the Docker image using Docker Buildx
       - name: Build Docker image
         uses: docker/build-push-action@v6
         with:
