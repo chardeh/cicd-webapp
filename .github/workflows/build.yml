@@ -54,7 +54,7 @@ jobs:
 
       # Step 10: Build the Docker image using Docker Buildx
       - name: Build Docker image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v4
         with:
           context: .
           file: ./Dockerfile
