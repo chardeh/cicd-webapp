@@ -69,4 +69,4 @@ jobs:
           context: .
           file: ./Dockerfile
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/webapp:latest
-          push: true  # Set to true to push the image to Docker Hub
+          push: true  # Set to true to push the image to Docker Hub m
