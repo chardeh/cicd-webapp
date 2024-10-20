@@ -47,9 +47,9 @@ jobs:
         with:
           context: .
           push: false  # Do not push the image to Docker Hub
-          tags: <your-docker-hub-username>/webapp:latest
+          tags: chardeh/webapp:latest
 
       # Step 9: Save Docker image as a file (Optional for local use)
       - name: Save Docker image as a tar file
         run: |
-          docker save -o webapp-image.tar <your-docker-hub-username>/webapp:latest
+          docker save -o webapp-image.tar chardeh/webapp:latest
