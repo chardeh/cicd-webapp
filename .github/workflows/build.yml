@@ -12,7 +12,7 @@ jobs:
     steps:
       # Step 1: Check out the repository code
       - name: Check out repository code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       # Step 2: Set up Node.js version 20
       - name: Set up Node.js
@@ -54,7 +54,7 @@ jobs:
 
       # Step 10: Build the Docker image using Docker Buildx
       - name: Build Docker image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: ./Dockerfile
