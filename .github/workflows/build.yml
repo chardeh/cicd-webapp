@@ -1,27 +1,3 @@
-Skip to content
-Navigation Menu
-chardeh
-/
-cicd-webapp
-
-Type / to search
-Code
-Issues
-Pull requests
-7
-Actions
-Projects
-Wiki
-Security
-20
-Insights
-Settings
-Build and Test
-Merge pull request #10 from chardeh/dependabot/github_actions/actions… #41
-Jobs
-Run details
-Workflow file for this run
-.github/workflows/build.yml at ae4cd7c
 name: Build and Test
 
 on:
