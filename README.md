@@ -18,7 +18,7 @@ Run the application:
 yarn start
 ```
 
-## Running the tests
+## Running the tests from the application
 
 Install the dependencies:
 
